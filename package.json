@@ -1,23 +1,23 @@
 {
-  "name": "grunt-preload-assets",
+  "name": "grunt-preload-assets-fixed",
   "description": "A Grunt plugin for making preload assets manifest. It supports any kind of output format by using templates.",
-  "version": "0.2.1",
-  "homepage": "https://github.com/gunta/grunt-preload-assets",
+  "version": "0.2.2",
+  "homepage": "https://github.com/chuckpierce/grunt-preload-assets",
   "author": {
-    "name": "Gunther Brunner",
-    "email": "gunta85@gmail"
+    "name": "Chuck Pierce",
+    "email": "chuckmpierce@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/gunta/grunt-preload-assets.git"
+    "url": "git://github.com/chuckpierce/grunt-preload-assets.git"
   },
   "bugs": {
-    "url": "https://github.com/gunta/grunt-preload-assets/issues"
+    "url": "https://github.com/chuckpierce/grunt-preload-assets/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/gunta/grunt-preload-assets/blob/master/LICENSE-MIT"
+      "url": "https://github.com/chuckpierce/grunt-preload-assets/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",
@@ -45,5 +45,4 @@
     "pxloader",
     "generator"
   ],
-  "dependencies": {}
 }
