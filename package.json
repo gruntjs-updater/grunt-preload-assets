@@ -1,7 +1,7 @@
 {
   "name": "grunt-preload-assets-fixed",
   "description": "A Grunt plugin for making preload assets manifest. It supports any kind of output format by using templates.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/chuckpierce/grunt-preload-assets",
   "author": {
     "name": "Chuck Pierce",
