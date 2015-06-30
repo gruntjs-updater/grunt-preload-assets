@@ -1,4 +1,4 @@
-## This is a fork of the original grunt-preload-assets npm package.  It has been changed and published to npm as grunt-preload-assets-fixed so that it will work with node 0.12 and up.  You should download it and install the same way you would with grunt-preload-assets.  This package will be deleted once the original grunt-preload-assets is updated on npm.  Thanks
+*This is a fork of the original grunt-preload-assets npm package.  It has been changed and published to npm as grunt-preload-assets-fixed so that it will work with node 0.12 and up.  You should download it and install the same way you would with grunt-preload-assets.  This package will be deleted once the original grunt-preload-assets is updated on npm.  Thanks*
 
 # grunt-preload-assets
 
