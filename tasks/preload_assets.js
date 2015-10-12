@@ -20,7 +20,7 @@ module.exports = function (grunt) {
 	var execSync;
 
 	if (imagesEngine === 'sips') {
-		execSync = require('sync-exec');
+		execSync = require('child_process').execSync;
 	}
 
 
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
 	// https://github.com/gruntjs/grunt-contrib-jst/blob/master/tasks/jst.js
 
 	var typeByExtension = function (file) {
-		var extension = _.ltrim(path.extname(file.src), '.');
+		var extension = _.ltrim(path.extname(file.src || file), '.');
 		switch (extension) {
 			case "jpeg":
 			case "jpg":
@@ -83,38 +83,35 @@ module.exports = function (grunt) {
 			return stats.mtime.getTime();
 		},
 		dimensionsInPixels: function (filepath) {
+
 			var dimensions = {
 				width: -1,
 				height: -1
 			};
 
-			if (imagesEngine === 'sips') {
-				var commandToExecute = 'sips "' + filepath + '" -g pixelHeight -g pixelWidth';
-				var sipsOutput = execSync.stdout(commandToExecute).split('\n');
+			if (typeByExtension(filepath) === "IMAGE") {
 
-				grunt.log.write(".");
+				if (imagesEngine === 'sips') {
+					var commandToExecute = 'sips -g pixelHeight -g pixelWidth ' + filepath;
+					var sipsOutput = execSync(commandToExecute).toString();
 
-				// 4 lines: good signal that we have good output
-				if (sipsOutput.length === 4) {
-					var heightFound = sipsOutput[1].match(/pixelHeight: (\d+)/);
-					if (heightFound.length > 1) {
-						// Height found
-						dimensions.height = parseInt(heightFound[1], 10);
+					// 110 lines: good signal that we have good output
+					if (sipsOutput.length > 110) {
+						var heightFound = sipsOutput.match(/pixelHeight: (\d+)/);
+						if (heightFound.length > 1) {
+							// Height found
+							dimensions.height = parseInt(heightFound[1], 10);
+						}
+						var widthFound = sipsOutput.match(/pixelWidth: (\d+)/);
+						if (widthFound.length > 1) {
+							// Width found
+							dimensions.width = parseInt(widthFound[1], 10);
+						}
+					} else {
+						// No image
 					}
-					var widthFound = sipsOutput[2].match(/pixelWidth: (\d+)/);
-					if (widthFound.length > 1) {
-						// Width found
-						dimensions.width = parseInt(widthFound[1], 10);
-					}
-				} else {
-					// No image
 				}
 			}
-
-			// TODO: scan dimensions
-//			if (typeByExtension(filepath) === "IMAGE") {
-//				console.log(filepath)
-//			}
 
 			return dimensions;
 		},
